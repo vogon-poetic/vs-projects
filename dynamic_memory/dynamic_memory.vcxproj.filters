@@ -15,7 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\example4.cpp">
+    <ClInclude Include="graph1.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="graphLib2017.lib">
+      <Filter>Source Files</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="example5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

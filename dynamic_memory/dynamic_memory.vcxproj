@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\example4.cpp" />
+    <ClInclude Include="graph1.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="graphLib2017.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="example5.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
