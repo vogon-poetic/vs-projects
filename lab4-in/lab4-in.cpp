@@ -137,7 +137,7 @@ bool validateAddress(string address)
 bool validatePhone(string phone)
 {
 	//Validate the phone – return true if valid, false if not
-	if (phone.length != 10) {
+	if (phone.length() != 10) {
 		return false;
 	}
 	else {
@@ -155,7 +155,7 @@ bool validatePhone(string phone)
 string convertToUpper(string input)
 {
 	//Convert input to all uppercase
-	for (int i = 0; i < input.length; ++i) {
+	for (int i = 0; i < input.length(); ++i) {
 		input[i] = toupper(input[i]);
 	}
 
@@ -166,14 +166,18 @@ string convertToUpper(string input)
 //Displays the information in graphics window
 void displayFields(string name, string address, string phone)
 {
-	int dummy_obj = 0;
+	int obj[3] = { 0 };
 
 	//Draw the form (rectangles)
-	dummy_obj = drawRect(230, 85, 170, 20); // Name field
+	obj[0] = drawRect(230, 85, 170, 20); // Name field
+	obj[1] = drawRect(230, 125, 325, 20);// Address field
+	obj[2] = drawRect(230, 165, 125, 20);// Phone field
+
+	setColor(obj[0], 200, 200, 200);
+	setColor(obj[1], 200, 200, 200);
+	setColor(obj[2], 200, 200, 200);
 	
-	drawRect(230, 125, 325, 20);// Address field
-	drawRect(230, 165, 125, 20);// Phone field
-
-
-	//Display the fields
+	gout << setPos(230, 65) << name << endg;
+	gout << setPos(230, 105) << address << endg;
+	gout << setPos(230, 145) << phone << endg;
 }
