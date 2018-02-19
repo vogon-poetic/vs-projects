@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Desktop\lecture1_class.cpp">
+    <ClCompile Include="test1p1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="graphLib2017.lib" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graph1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="graphLib2017.lib" />
   </ItemGroup>
 </Project>

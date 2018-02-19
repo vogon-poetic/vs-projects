@@ -121,7 +121,7 @@ class Gout
     void setG(int g) {this->g = g;}
     void setB(int b) {this->b = b;}
     int getR() {return r;}
-    int getG() {return g;}
+    int getG() { return g;}
     int getB() {return b;}
     void setPrecisionFlag(bool flag) { precisionFlag = flag;}
     bool getPrecisionFlag() {return precisionFlag;}

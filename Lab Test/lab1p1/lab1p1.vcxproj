@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{E8343EAC-4A99-4DE0-9514-AA91FA895ADB}</ProjectGuid>
+    <ProjectGuid>{D7FF11B6-509D-4DD2-B450-3F45180A3F00}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>introtoooplecture</RootNamespace>
+    <RootNamespace>lab1p1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Desktop\lecture1_class.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="graphLib2017.lib" />
+    <ClCompile Include="test1p1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graph1.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="graphLib2017.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
