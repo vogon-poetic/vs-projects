@@ -38,9 +38,10 @@ bool FilledCircle::setX(int x_val)
 	} else if (x_val >= 640) {
 		x = 639;
 		return false;
+	} else {
+		x = x_val;
+		return true;
 	}
-
-	return true;
 }
 
 int FilledCircle::getX()
@@ -57,9 +58,10 @@ bool FilledCircle::setY(int y_val)
 	} else if (y_val >= 480) {
 		y = 479;
 		return false;
+	} else {
+		y = y_val;
+		return true;
 	}
-
-	return true;
 }
 
 int FilledCircle::getY()
@@ -76,9 +78,10 @@ bool FilledCircle::setRadius(int r_val)
 	} else if (r_val > 30) {
 		radius = 30;
 		return false;
+	} else {
+		radius = r_val;
+		return true;
 	}
-
-	return true;
 }
 
 int FilledCircle::getRadius()
@@ -137,9 +140,9 @@ int main()
 		circle1.draw();
 
 		//Display the coordinate info, radius info under the circle along with the 
-		gout << setPos(circle1.getX(), circle1.getY() + 15) 
+		gout << setPos(circle1.getX() - (circle1.getRadius() + 3), circle1.getY() + circle1.getRadius() + 16) 
 			<< "(" << circle1.getX() << "," << circle1.getY() << ")" << endg;
-		gout << setPos(circle1.getX(), circle1.getY() + 30)
+		gout << setPos(circle1.getX() - (circle1.getRadius() + 3), circle1.getY() + circle1.getRadius() + 32) 
 			<< "Radius: " << circle1.getRadius() << endg;
 
 		cout << "\nWould you like to repeat? (y/n): ";
