@@ -68,5 +68,5 @@ void Container::draw()
 
 	// Draw wall and floor
 	::setColor(drawRect(0, 0, 50, 400), 200, 200, 200);
-	::setColor(drawRect(0, 400, 640, 79), 71, 35, 35);
+	::setColor(drawRect(0, 400, 640, 78), 71, 35, 35);
 }
