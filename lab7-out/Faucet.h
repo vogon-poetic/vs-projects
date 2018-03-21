@@ -6,8 +6,7 @@
 class Faucet
 {
 private:
-	GenPoint start;
-	GenPoint end;
+	GenPoint pos;
 	Fluid fluid;
 
 public:

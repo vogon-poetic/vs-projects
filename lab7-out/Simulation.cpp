@@ -14,6 +14,7 @@ Simulation::Simulation() {
 
 void Simulation::draw() {
 	this->container.draw();
+	this->faucet.draw();
 	this->setFaucet(this->faucet);
 	this->start();
 }

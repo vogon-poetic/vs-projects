@@ -27,11 +27,11 @@ void Faucet::turnOff() {
 }
 
 void Faucet::setPosition(GenPoint upper) {
-	this->start = upper;
+	this->pos = upper;
 }
 
 GenPoint Faucet::getPosition() {
-	return this->start;
+	return this->pos;
 }
 
 void Faucet::setFluid(Fluid fluid) {
