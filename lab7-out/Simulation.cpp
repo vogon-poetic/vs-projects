@@ -12,11 +12,19 @@ Simulation::Simulation() {
 	this->container.setRadius(0);
 }
 
+/*	1. draw the container
+	2. setup faucet & fluid (done within setFaucet)
+	3. draw the faucet
+*/
 void Simulation::draw() {
+	// 1. Draw the container
 	this->container.draw();
-	this->faucet.draw();
+
+	// 2. Set the starting point of fluid and waterRate
 	this->setFaucet(this->faucet);
-	this->start();
+
+	// 3. draw the faucet
+	this->faucet.draw();
 }
 
 void Simulation::setContainer(Container container) {
@@ -30,13 +38,46 @@ Container Simulation::getContainer() {
 	return this->container;
 }
 
-// suggested x-coord = (radius - 64) + 50
-// suggested y-coord = 12
 void Simulation::setFaucet(Faucet faucet) {
-	int x = (this->getContainer().getRadius() - 64) + 50;
+	double pi = 3.14159;
 	int y = 12;
+	int r = this->getContainer().getRadius();
+	int h = this->getContainer().getHeight();
+	double vol = pi*(r*r)*h;
+	int flowrate = this->getWaterRate();
+	GenPoint fluid_pos = this->getContainer().getPosition();
+	int fx = 0, fy = 0;
+	fx = fluid_pos.getX();
+	fy = fluid_pos.getY() - this->container.getHeight();
+
+	this->faucet.setPosition(GenPoint(r, y));
 	this->faucet.setFluid(faucet.getFluid());
-	this->faucet.setPosition(GenPoint(x, y));
+
+	// to convert from waterRate (gpm) into a useful unit:
+	// (mm^3)/s = (3785411.78 * waterRate)/60 
+	// where 1mm = 1px
+
+	double dv = (3785411.78 * flowrate) / 60; 
+	double dh = dv / (pi * r * r);
+
+	for (double height = 0, h = 0;;) {
+		if (h <= this->container.getHeight()) {
+			dh = dv / (pi * r * r);
+			if (dh > 0) {
+				height += (int) floor(dh);
+				::setColor(drawRect(fx, fy, 2 * r, height), 0, 255, 0);
+
+				Sleep(100);
+			} else {
+				do {
+					height += dh;
+					Sleep(100);
+				} while (h <= 1);
+			}
+		} else {
+			break;
+		}
+	}
 }
 
 Faucet Simulation::getFaucet() {
@@ -53,5 +94,5 @@ void Simulation::setWaterRate(int waterRate) {
 
 void Simulation::start() {
 	this->faucet.turnOn();
-	this->faucet.turnOff();
+//	this->faucet.turnOff();
 }

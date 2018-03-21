@@ -63,8 +63,8 @@ void Container::draw()
 
 	// Use :: to specify an independent function out of local scope.
 	::setColor(drawLine(x, y, x, y + h, 5), red, blue, green); // left
-	::setColor(drawLine(x, y+h, x+(2 * r), y+h, 5), red, blue, green); // left
-	::setColor(drawLine(x+(2 * r), y+h, x+(2 * r), y, 5), red, blue, green); // left
+	::setColor(drawLine(x, y+h, x+(2 * r), y+h, 5), red, blue, green); // bottom
+	::setColor(drawLine(x+(2 * r), y+h, x+(2 * r), y, 5), red, blue, green); // right
 
 	// Draw wall and floor
 	::setColor(drawRect(0, 0, 50, 400), 200, 200, 200);

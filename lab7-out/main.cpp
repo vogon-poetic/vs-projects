@@ -4,6 +4,8 @@
 
 using namespace std;
 
+#define DEBUG_BUILD // uncomment for a predefined height/radius/color
+
 int main()
 {
 	//Variable Declaration/Initialization
@@ -22,6 +24,8 @@ int main()
 	//Continually simulate
 	do
 	{
+
+#ifndef DEBUG_BUILD
 		//Get the Container's radius/height/color (Add Data Validation)
 		do {
 			cout << "Enter radius (between 10 and 285): ";
@@ -44,12 +48,19 @@ int main()
 				 (b < 0 || b > 255));
 
 		//Set the Containers radius/height /color
-		container.setRadius(radius);
-		container.setHeight(height);
+		container.setRadius(radius); 
+		container.setHeight(height); 
 		container.setColor(Color(r, g, b));
 
+		GenPoint p = GenPoint(56, 400 - height); 
+#else
+		container.setRadius(100); 
+		container.setHeight(200); 
+		container.setColor(Color(120, 120, 120));
 		//Compute the Container upper left coordinate based on the height
-		GenPoint p = GenPoint(55, 400 - height);
+		GenPoint p = GenPoint(56, 400 - 200); 
+#endif
+
 
 		//Set the Container’s position
 		container.setPosition(p);
@@ -59,6 +70,7 @@ int main()
 
 		//Draw the simulation/container (invoke draw on Simulation)
 		simulation.draw();
+		simulation.start();
 
 		//Repeat the simulation?
 		cout << "Repeat the simulation (y/n)? ";
@@ -67,7 +79,7 @@ int main()
 		clearGraphics();
 		system("cls");
 
-	} while (repeat == 'y');
+	} while (repeat == 'y' || repeat == 'Y');
 
 	return 0;
 }
