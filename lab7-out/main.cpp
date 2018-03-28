@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define DEBUG_BUILD // uncomment for a predefined height/radius/color
+//#define CONST_SIZE // uncomment for a predefined height/radius/color
 
 int main()
 {
@@ -25,7 +25,7 @@ int main()
 	do
 	{
 
-#ifndef DEBUG_BUILD
+#ifndef CONST_SIZE
 		//Get the Container's radius/height/color (Add Data Validation)
 		do {
 			cout << "Enter radius (between 10 and 285): ";
@@ -70,6 +70,7 @@ int main()
 
 		//Draw the simulation/container (invoke draw on Simulation)
 		simulation.draw();
+		simulation.setWaterRate(2);
 		simulation.start();
 
 		//Repeat the simulation?

@@ -39,45 +39,11 @@ Container Simulation::getContainer() {
 }
 
 void Simulation::setFaucet(Faucet faucet) {
-	double pi = 3.14159;
 	int y = 12;
 	int r = this->getContainer().getRadius();
-	int h = this->getContainer().getHeight();
-	double vol = pi*(r*r)*h;
-	int flowrate = this->getWaterRate();
-	GenPoint fluid_pos = this->getContainer().getPosition();
-	int fx = 0, fy = 0;
-	fx = fluid_pos.getX();
-	fy = fluid_pos.getY() - this->container.getHeight();
-
 	this->faucet.setPosition(GenPoint(r, y));
 	this->faucet.setFluid(faucet.getFluid());
 
-	// to convert from waterRate (gpm) into a useful unit:
-	// (mm^3)/s = (3785411.78 * waterRate)/60 
-	// where 1mm = 1px
-
-	double dv = (3785411.78 * flowrate) / 60; 
-	double dh = dv / (pi * r * r);
-
-	for (double height = 0, h = 0;;) {
-		if (h <= this->container.getHeight()) {
-			dh = dv / (pi * r * r);
-			if (dh > 0) {
-				height += (int) floor(dh);
-				::setColor(drawRect(fx, fy, 2 * r, height), 0, 255, 0);
-
-				Sleep(100);
-			} else {
-				do {
-					height += dh;
-					Sleep(100);
-				} while (h <= 1);
-			}
-		} else {
-			break;
-		}
-	}
 }
 
 Faucet Simulation::getFaucet() {
@@ -93,6 +59,49 @@ void Simulation::setWaterRate(int waterRate) {
 }
 
 void Simulation::start() {
+	double pi = 3.14159;
+	int y = 12;
+	int r = this->getContainer().getRadius();
+	int h = this->getContainer().getHeight();
+	double vol = pi * (r*r)*h;
+	int flowrate = this->getWaterRate();
+	GenPoint fluid_pos = this->getContainer().getPosition();
+	int fx = 0, fy = 0;
+	fx = fluid_pos.getX();
+	fy = fluid_pos.getY() + this->container.getHeight();
+
+	// turn on
 	this->faucet.turnOn();
-//	this->faucet.turnOff();
+
+	// to convert from waterRate (gpm) into a useful unit:
+	// (mm^3)/s = (3785411.78 * waterRate)/60 
+	// where 1mm = 1px
+	double dv = (3785411.78 * flowrate) / 60;
+	double dh = dv / (pi * r * r);
+	double height = 0;
+	GenPoint endp = this->faucet.getFluid().getEnd();
+
+	// begin the actual draw loop 
+	for (height = 0; height <= this->container.getHeight();) {
+		dh = dv / (pi * r * r);
+		if (dh > 0) {
+			height += (int)floor(dh);
+			::setColor(drawRect(fx, fy - height, 2 * r, height), 0, 0, 255);
+
+			Sleep(100);
+		}
+		else {
+			do {
+				height += dh;
+				Sleep(100);
+			} while (height <= 1);
+		}
+	}
+	
+	Fluid f = this->faucet.getFluid();
+	f.setEnd(GenPoint(endp.getX(), endp.getY() - height));
+	this->faucet.setFluid(f);
+	this->faucet.turnOff();
+
+	return;
 }

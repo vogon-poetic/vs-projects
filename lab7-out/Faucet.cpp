@@ -51,9 +51,9 @@ void Faucet::turnOn() {
 }
 
 void Faucet::turnOff() {
-	int x = this->getPosition().getX();
-	int y = this->getPosition().getY();
-	GenPoint endpoint = this->getFluid().getEnd();
-	drawLine(x, y, x, endpoint.getY(), 2);
+	GenPoint start = this->fluid.getStart();
+	GenPoint end = this->fluid.getEnd();
+
+	::setColor(drawLine(start.getX(), start.getY(), end.getX(), end.getY(), 3), 0, 0, 0);
 }
 
